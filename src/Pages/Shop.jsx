@@ -1,16 +1,16 @@
 import React from 'react'
 import SmallBanner from '../components/SmallBanner'
 
-const About = () => {
+const Shop = () => {
 
-  const subTitle = 'We sale fresh fruits'
-  const title = 'About Us'
+  const subTitle = "Fresh and organic"
+  const title = "Shop"
 
   return (
-    <>
+    <div>
       <SmallBanner subTitle={subTitle} title={title} />
-    </>
+    </div>
   )
 }
 
-export default About
+export default Shop

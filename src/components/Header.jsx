@@ -27,8 +27,8 @@ const Header = () => {
           <nav className='  flex items-center gap-8 font-semibold'>
             <NavLink to="/" className={({ isActive }) => `${isActive && "text-[#F28123] "}`}>Home</NavLink>
             <NavLink to="/about" className={({ isActive }) => `${isActive && "text-[#F28123]"}`}>About Us</NavLink>
-            <Link>Shop</Link>
-            <Link>Contact Us</Link>
+            <NavLink to="/shop" className={({ isActive }) => `${isActive && "text-[#F28123]"}`}>Shop</NavLink>
+            <NavLink to="/contact" className={({ isActive }) => `${isActive && "text-[#F28123]"}`}>Contact Us</NavLink>
           </nav>
         </div>
 
