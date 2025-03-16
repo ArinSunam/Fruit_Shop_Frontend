@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronRight, FaFacebookF, FaInstagram, FaGithub, FaLinkedin, FaPaperPlane } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const pageData = [
   {
@@ -22,10 +23,33 @@ const pageData = [
 
 ]
 
+const socialData = [
+  {
+    icons: <FaXTwitter />,
+    link: '#'
+  },
+  {
+    icons: <FaFacebookF />,
+    link: '#'
+  },
+  {
+    icons: <FaLinkedin />,
+    link: '#'
+  },
+  {
+    icons: <FaInstagram />,
+    link: '#'
+  },
+  {
+    icons: <FaGithub />,
+    link: '#'
+  }
+]
+
 const Footer = () => {
   return (
-    <footer className='bg-[#051922] py-[60px] text-white'>
-      <div className='mycontainer grid grid-cols-4 gap-5'>
+    <footer className='bg-[#051922]  text-white'>
+      <section className='mycontainer grid sm:grid-cols-2 lg:grid-cols-4 gap-7 lg:gap-5 py-[80px]'>
 
         {/* ABOUT US */}
         <section>
@@ -95,11 +119,36 @@ const Footer = () => {
             <div className='mt-[14px] bg-[#F28123] h-0.5 w-8' />
           </div>
           <p className='opacity-75'>Subscribe to our mailing list to get the latest updates.</p>
+          <div className='flex gap-1 mt-[18px]'>
+            <input
+              type="text"
+              placeholder='Email'
+              className='p-[15px] rounded-l-[5px] bg-[#012738]'
+            />
+            <button className='text-primary text-sm py-[14px] px-5 rounded-r-[3px] bg-[#012738]'><FaPaperPlane /></button>
+          </div>
 
         </section>
 
 
-      </div>
+      </section>
+
+      <hr className='opacity-30' />
+
+      <section className='text-sm mycontainer py-4 opacity-75 flex items-center justify-between '>
+        <div className='space-y-2'>
+          <p>Copyright &copy; 2025 - <span className='text-primary font-bold'>Rabbit Studio</span>, All rights reserved</p>
+          <p>Distributed by - <span className='text-primary font-bold'>Agile Institute</span></p>
+        </div>
+
+        <nav className='flex gap-6'>
+          {
+            socialData.map((el, i) => (
+              <Link to={el.link}>{el.icons}</Link>
+            ))
+          }
+        </nav>
+      </section>
     </footer>
   )
 }
