@@ -14,5 +14,9 @@
     @apply text-2xl font-medium
   }
 
+  .form-input {
+    @apply w-full px-[15px] py-4 border border-[#dbdbdb] rounded-sm outline-none
+  }
+
 
 }
