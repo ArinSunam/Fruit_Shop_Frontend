@@ -15,7 +15,7 @@
   }
 
   .form-input {
-    @apply w-full px-[15px] py-4 border border-[#dbdbdb] rounded-sm outline-none
+    @apply w-full px-[15px] py-4 border border-[#bdbbbb] rounded-sm outline-none
   }
 
 

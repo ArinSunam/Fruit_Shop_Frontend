@@ -4,8 +4,14 @@ import { ShopData } from '../dummy/ShopDummy'
 import ProductCard from '../components/ProductCard'
 import Pagination from 'rc-pagination'
 import 'rc-pagination/assets/index.css'
+import { useGetProductQuery } from '../features/ProductApi'
 
 const Shop = () => {
+
+
+  const { data: ProductData, isLoading, isError } = useGetProductQuery()
+
+
 
 
   const subTitle = "Fresh and organic"
@@ -19,9 +25,17 @@ const Shop = () => {
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
-  const paginatedData = ShopData.slice(startIndex, endIndex)
+  const paginatedData = ProductData?.data?.slice(startIndex, endIndex)
 
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
 
+  if (isError) {
+    return <p>Something went wrong</p>
+  }
+
+  console.log('data', ProductData)
   return (
     <>
       <SmallBanner subTitle={subTitle} title={title} />
@@ -29,7 +43,7 @@ const Shop = () => {
       <main className='mycontainer py-[60px] space-y-9 '>
         <section className=' grid grid-cols-3 gap-6'>
           {
-            paginatedData.map((el, i) => (
+            paginatedData?.map((el, i) => (
               <ProductCard el={el} key={i} />
             ))
           }
@@ -39,7 +53,7 @@ const Shop = () => {
           className='flex justify-center text-primary bg-ar'
           current={currentPage}
           pageSize={itemsPerPage}
-          total={ShopData.length}
+          total={ProductData?.total}
           onChange={handlePageChange}
         />
       </main>

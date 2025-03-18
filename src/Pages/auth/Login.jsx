@@ -37,7 +37,7 @@ const Login = () => {
 
 
   return (
-    <div className="px-[30px] sm:px-[15px] pt-[150px] pb-[60px] mx-auto w-full sm:w-[570px]">
+    <div className="px-[30px] sm:px-[15px] pt-[100px] pb-[60px] mx-auto w-full sm:w-[570px]">
 
       <h1 className="text-[25px] sm:text-[40px] text-center font-semibold font-WorkSans  text-[#2f2f2f] pb-8">Login</h1>
 
