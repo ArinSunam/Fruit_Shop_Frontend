@@ -12,6 +12,7 @@ import Shop from './Pages/Shop.jsx'
 import { Provider } from 'react-redux'
 import { store } from './features/store.js'
 import Login from './Pages/auth/Login.jsx'
+import ShopDetail from './Pages/ShopDetail.jsx'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "shop",
         element: <Shop />
+      },
+      {
+        path: "shop/:id",
+        element: <ShopDetail />
       },
       {
         path: "login",
