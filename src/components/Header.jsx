@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 
+
 const Header = () => {
+
+  const token = false
 
   const nav = useNavigate()
   const [scrolled, setScrolled] = useState(false)
@@ -32,12 +35,23 @@ const Header = () => {
           </nav>
         </div>
 
-        <div className='hidden lg:block'>
-          <div className='flex gap-6'>
-            <FaShoppingCart />
-            <FaSearch />
-          </div>
-        </div>
+        {
+          token ? (
+            <div className='hidden lg:block'>
+              <div className='flex gap-6'>
+                <FaShoppingCart />
+                <FaUser />
+              </div>
+            </div>
+          ) : (
+            <button
+              className='bg-primary px-4 py-2 font-medium rounded-md cursor-pointer'
+              onClick={() => nav("/login")}
+            >Login</button>
+          )
+
+        }
+
 
         <div className='block lg:hidden text-3xl cursor-pointer' onClick={() => {
           setMenuOpen((prev) => !prev)

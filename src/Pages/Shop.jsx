@@ -11,9 +11,6 @@ const Shop = () => {
 
   const { data: ProductData, isLoading, isError } = useGetProductQuery()
 
-
-
-
   const subTitle = "Fresh and organic"
   const title = "Shop"
 
