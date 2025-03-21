@@ -3,37 +3,37 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import { RxEyeClosed, RxEyeOpen } from "react-icons/rx"
+import { useLoginMutation } from "../../features/AuthApi"
+import { setUserToLocal } from "../../features/UserSlice"
+import { toast } from "react-toastify"
 
 
 const Login = () => {
 
-  // const nav = useNavigate()
-  // const dispatch = useDispatch()
+  const nav = useNavigate()
+  const dispatch = useDispatch()
+  const [userLogin, { isLoading }] = useLoginMutation()
   const [showPassword, setShowPassword] = useState(false)
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
 
+  const onLogin = async (data) => {
+    try {
+      const res = await userLogin(data).unwrap()
+
+      dispatch(setUserToLocal(res))
+      toast.success("Login Successful")
+      nav(-1)
+      reset()
+    } catch (error) {
+      toast.error('Invalid Credentials')
+      console.log('login error', error)
+    }
+  }
+
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
-
-  // const onLogin = async (data) => {
-  //   try {
-  //     const res = await userLogin(data).unwrap()
-
-  //     dispatch(setUserToLocal(res))
-  //     toast.success("Login Successful")
-  //     nav(-1)
-  //     reset()
-  //   } catch (error) {
-  //     toast.error('Invalid Credentials')
-  //     console.log('login error', error)
-  //   }
-  // }
-
-  const onLogin = (data) => {
-    console.log(data)
-  }
 
 
   return (
@@ -50,7 +50,7 @@ const Login = () => {
           <input type="text"
             className="form-input"
             placeholder="Email"
-            {...register('emal')}
+            {...register('email')}
           />
 
           {/* {errors.email && <h1 className="text-red-600">{errors.email.message}</h1>} */}
@@ -81,7 +81,7 @@ const Login = () => {
         </div>
 
         <div className="w-full flex flex-col items-center gap-5">
-          <button className="mt-2 py-[10px] px-[35px] rounded-sm bg-blue-900 text-white font-medium"> Sign In</button>
+          <button type="submit" className="mt-2 py-[10px] px-[35px] rounded-sm bg-blue-900 text-white font-medium"> {isLoading ? "loading" : "Sign In"}</button>
 
           <Link to="/register" className="underline font-light">New customer? Signup for an account</Link>
         </div>

@@ -13,6 +13,9 @@ import { Provider } from 'react-redux'
 import { store } from './features/store.js'
 import Login from './Pages/auth/Login.jsx'
 import ShopDetail from './Pages/ShopDetail.jsx'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
+    <ToastContainer autoClose={1000} />
     <RouterProvider router={router} />
   </Provider>
 )
