@@ -21,7 +21,7 @@ const Login = () => {
   const onLogin = async (data) => {
     try {
       const res = await userLogin(data).unwrap()
-
+      console.log('res', res)
       dispatch(setUserToLocal(res))
       toast.success("Login Successful")
       nav(-1)
