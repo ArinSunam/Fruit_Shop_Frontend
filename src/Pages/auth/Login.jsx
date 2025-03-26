@@ -6,6 +6,8 @@ import { RxEyeClosed, RxEyeOpen } from "react-icons/rx"
 import { useLoginMutation } from "../../features/AuthApi"
 import { setUserToLocal } from "../../features/UserSlice"
 import { toast } from "react-toastify"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { LoginSchema } from "../../schemas/LoginSchema"
 
 
 const Login = () => {
@@ -33,7 +35,10 @@ const Login = () => {
   }
 
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm()
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    resolver: yupResolver(LoginSchema)
+  })
+  console.log('errors', errors)
 
 
   return (
@@ -53,7 +58,7 @@ const Login = () => {
             {...register('email')}
           />
 
-          {/* {errors.email && <h1 className="text-red-600">{errors.email.message}</h1>} */}
+          {errors.email && <h1 className="text-red-600">{errors.email.message}</h1>}
         </div>
 
         {/* password */}
@@ -77,7 +82,7 @@ const Login = () => {
               {showPassword ? <RxEyeClosed /> : <RxEyeOpen />}
             </button>
           </div>
-          {/* {errors.password && <h1 className="text-red-600">{errors.password.message}</h1>} */}
+          {errors.password && <h1 className="text-red-600">{errors.password.message}</h1>}
         </div>
 
         <div className="w-full flex flex-col items-center gap-5">

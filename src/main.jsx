@@ -12,6 +12,7 @@ import Login from './Pages/auth/Login.jsx'
 import ShopDetail from './Pages/ShopDetail.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import UserRoutes from './components/RoutesController.jsx'
 
 
 const router = createBrowserRouter([
@@ -40,9 +41,14 @@ const router = createBrowserRouter([
         element: <ShopDetail />
       },
       {
-        path: "login",
-        element: <Login />
-      },
+        element: <UserRoutes />,
+        children: [
+          {
+            path: "login",
+            element: <Login />
+          }
+        ]
+      }
     ]
   }
 ])

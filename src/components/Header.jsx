@@ -9,6 +9,7 @@ import { BiChevronDown } from 'react-icons/bi';
 import { useLogoutMutation } from '../features/AuthApi';
 import { clearAll } from '../features/UserSlice';
 import { toast } from 'react-toastify';
+import Cart from './cart';
 
 const Header = () => {
 
@@ -21,6 +22,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileItems, setProfileItems] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false)
 
   const onLogout = async () => {
     await logout();
@@ -38,6 +40,7 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0  ${scrolled ? "bg-[#051922]" : "bg-transparent"} w-[100vw] py-[15px] text-white`}>
+      {cartOpen && <Cart onClose={() => setCartOpen(false)} />}
       <div className='mycontainer mx-auto flex items-center justify-between'>
         <h1 className='text-[#F28123] text-[32px] font-bold cursor-pointer' onClick={() => nav('/')}>Fruitkha</h1>
 
@@ -53,7 +56,7 @@ const Header = () => {
         {token ? (
           <div className='hidden lg:block relative'>
             <div className='flex items-center gap-6'>
-              <FaShoppingCart />
+              <FaShoppingCart className='cursor-pointer' onClick={() => setCartOpen(true)} />
 
               <div className='flex items-center gap-1 cursor-pointer' onClick={() => setProfileItems(!profileItems)}>
                 {loggedInUser?.profile_pic ? (
