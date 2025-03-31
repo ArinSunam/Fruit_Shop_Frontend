@@ -39,7 +39,7 @@ const Header = () => {
   window.addEventListener('scroll', handleScroll);
 
   return (
-    <header className={`fixed top-0  ${scrolled ? "bg-[#051922]" : "bg-transparent"} w-[100vw] py-[15px] text-white`}>
+    <header className={`z-20 fixed top-0  ${scrolled ? "bg-[#051922]" : "bg-transparent"} w-[100vw] py-[15px] text-white`}>
       {cartOpen && <Cart onClose={() => setCartOpen(false)} />}
       <div className='mycontainer mx-auto flex items-center justify-between'>
         <h1 className='text-[#F28123] text-[32px] font-bold cursor-pointer' onClick={() => nav('/')}>Fruitkha</h1>

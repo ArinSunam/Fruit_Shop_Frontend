@@ -1,17 +1,23 @@
 import { FaCheck } from "react-icons/fa6";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetProductDetailQuery } from "../features/ProductApi";
 import SmallBanner from "../components/SmallBanner";
 import { BaseUrl } from "../features/constant";
+import { useDispatch, } from "react-redux";
+import { addOrUpdateCart } from "../features/cartSlice";
 
 
 
 const ShopDetail = () => {
 
+
+
+  const dispatch = useDispatch();
   const subTitle = "Fresh and organic"
   const title = "Shop Detail"
   const { id } = useParams();
+
 
   const { data: item } = useGetProductDetailQuery(id);
 
@@ -69,9 +75,23 @@ const ShopDetail = () => {
 
                 <div className="btn mt-5 w-full">
                   <button
-                    className="bg-primary w-full text-[17px] text-white py-3 text-center rounded-[8px]"
+                    className="bg-primary w-full text-[17px] text-white py-3 text-center rounded-[8px] cursor-pointer"
+                    onClick={() => {
+                      dispatch(
+                        addOrUpdateCart({
+                          name: item?.data.title,
+                          quantity: Number(1),
+                          image: item?.data.image,
+                          price: item?.data.price,
+                          product: item?.data._id,
+                          countInStock: item?.data.in_stock
+                        })
+
+                      )
+
+                    }}
                   >
-                    Add to chart
+                    Add to Cart
                   </button>
                 </div>
 

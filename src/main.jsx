@@ -13,6 +13,7 @@ import ShopDetail from './Pages/ShopDetail.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import UserRoutes from './components/RoutesController.jsx'
+import CartPage from './Pages/UserPages/CartPage.jsx'
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             element: <Login />
           }
         ]
+      },
+      {
+        element: <CartPage />,
+        path: '/cart'
       }
     ]
   }

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { clearCartsFromLocal, getCartsFromLocal, setCartsToLocal } from "./Storage"
+import { setCart, getCart, cartClear } from "./Storage"
 
 
 
@@ -7,38 +7,38 @@ import { clearCartsFromLocal, getCartsFromLocal, setCartsToLocal } from "./Stora
 export const cartSlice = createSlice({
   name: 'cartSlice',
   initialState: {
-    carts: getCartsFromLocal()
+    carts: getCart()
   },
   reducers: {
 
-    setToCarts: (state, action) => {
-      const isExist = state.carts.find((cart) => cart._id === action.payload._id);
+    addOrUpdateCart: (state, action) => {
+      const isExist = state.carts.find(
+        (cart) => cart.product === action.payload.product
+      );
 
       if (isExist) {
-        state.carts = state.carts.map((cart) => cart._id === action.payload._id ? action.payload : cart);
-
+        state.carts = state.carts.map((cart) =>
+          cart.product === isExist.product ? action.payload : cart
+        );
+        setCart(state.carts);
       } else {
         state.carts.push(action.payload);
-
+        setCart(state.carts);
       }
-      setCartsToLocal(state.carts);
     },
 
-    singleRemoveCart: (state, action) => {
+    removeCart: (state, action) => {
       state.carts.splice(action.payload, 1);
-      setCartsToLocal(state.carts);
+      setCart(state.carts);
     },
 
-
-    clearCarts: (state) => {
-      state.carts = []
-      clearCartsFromLocal();
-
+    clearCartItem: (state, action) => {
+      state.carts = [];
+      cartClear();
     },
-
   }
 
 });
 
-export const { setToCarts, singleRemoveCart, clearCarts } = cartSlice.actions;
+export const { addOrUpdateCart, removeCart, clearCartItem } = cartSlice.actions;
 export default cartSlice.reducer
