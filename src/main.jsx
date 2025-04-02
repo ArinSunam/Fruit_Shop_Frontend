@@ -12,8 +12,12 @@ import Login from './Pages/auth/Login.jsx'
 import ShopDetail from './Pages/ShopDetail.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import UserRoutes from './components/RoutesController.jsx'
+import UserRoutes from './auth/UserRoutes.jsx'
+
 import CartPage from './Pages/UserPages/CartPage.jsx'
+import AdminRoutes from './auth/AdminRoutes.jsx'
+import ProductList from './Pages/AdminPages/ProductList.jsx'
+import AddProduct from './Pages/AdminPages/AddProduct.jsx'
 
 
 const router = createBrowserRouter([
@@ -49,6 +53,20 @@ const router = createBrowserRouter([
             element: <Login />
           }
         ]
+      },
+      {
+        // element: <AdminRoutes />,
+        // path: "admin",
+        // children: [
+        //   {
+        path: "product-list",
+        element: <ProductList />
+        //   }
+        // ]
+      },
+      {
+        path: "add-product",
+        element: <AddProduct />
       },
       {
         element: <CartPage />,
