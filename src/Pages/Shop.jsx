@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import SmallBanner from '../components/SmallBanner'
-import { ShopData } from '../dummy/ShopDummy'
 import ProductCard from '../components/ProductCard'
 import Pagination from 'rc-pagination'
 import 'rc-pagination/assets/index.css'
@@ -8,21 +7,23 @@ import { useGetProductQuery } from '../features/ProductApi'
 
 const Shop = () => {
 
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const { data: ProductData, isLoading, isError } = useGetProductQuery()
+  const itemsPerPage = 5
+
+  const { data: ProductData, isLoading, isError } = useGetProductQuery({
+    page: currentPage,
+    limit: itemsPerPage
+  })
 
   const subTitle = "Fresh and organic"
   const title = "Shop"
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 6
   const handlePageChange = (page) => {
     setCurrentPage(page)
   }
 
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const endIndex = startIndex + itemsPerPage
-  const paginatedData = ProductData?.data?.slice(startIndex, endIndex)
+  const paginatedData = ProductData?.data
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -50,7 +51,7 @@ const Shop = () => {
           className='flex justify-center text-primary bg-ar'
           current={currentPage}
           pageSize={itemsPerPage}
-          total={ProductData?.total}
+          total={ProductData?.total || 0}
           onChange={handlePageChange}
         />
       </main>

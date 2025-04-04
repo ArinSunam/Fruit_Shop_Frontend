@@ -5,12 +5,13 @@ export const ProductApi = createApi({
   reducerPath: 'ProductApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BaseUrl,
-    credentials: "include" // ✅ Add this to allow cookies to be sent with requests
+
   }),
   tagTypes: ["product"],
   endpoints: (builder) => ({
     getProduct: builder.query({
-      query: () => '/product/fetch-products',
+      query: ({ page, limit }) => `product/fetch-products?page=${page}&perPage=${limit}`,
+
       providesTags: ["product"]
     }),
 
@@ -20,12 +21,19 @@ export const ProductApi = createApi({
     }),
 
     addProduct: builder.mutation({
-      query: (data) => ({
-        url: '/product/add-product',
-        body: data,
-        method: 'POST',
-        credentials: "include" // ✅ Ensure credentials are sent in mutation
-      })
+      query: (query) => (
+        {
+
+          url: '/product/add-product/',
+          body: query.data,
+          headers: {
+            Authorization: `Bearer ${query.token}`,
+          },
+
+          method: 'POST',
+          invalidatesTags: ["product"]
+
+        })
     })
   })
 });
