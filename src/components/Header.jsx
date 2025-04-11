@@ -17,6 +17,7 @@ const Header = () => {
   const [logout] = useLogoutMutation();
   const token = useSelector((store) => store?.userInfo?.user?.accessToken) || null;
   const loggedInUser = token ? useSelector((store) => store?.userInfo?.user?.data) : null;
+  console.log('loggedin user', loggedInUser)
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [scrolled, setScrolled] = useState(false);

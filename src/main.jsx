@@ -19,6 +19,7 @@ import AdminRoutes from './auth/AdminRoutes.jsx'
 import ProductList from './Pages/AdminPages/ProductList.jsx'
 import AddProduct from './Pages/AdminPages/AddProduct.jsx'
 import UpdateProduct from './Pages/AdminPages/UpdateProduct.jsx'
+import CheckoutPage from './Pages/CheckoutPage.jsx'
 
 
 const router = createBrowserRouter([
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         element: <CartPage />,
         path: '/cart'
+      },
+      {
+        element: <CheckoutPage />,
+        path: '/checkout'
       }
     ]
   }

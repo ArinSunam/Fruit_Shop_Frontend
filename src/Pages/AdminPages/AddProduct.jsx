@@ -46,8 +46,8 @@ const AddProduct = () => {
       if (response.error) {
         throw new Error(response.error.message || "Failed to add product");
       }
-
-      toast.success("Successfully Added Product");
+      add - order /
+        toast.success("Successfully Added Product");
       reset()
       setPreview(null)
 

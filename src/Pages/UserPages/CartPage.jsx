@@ -123,11 +123,11 @@ const CartPage = () => {
                 </div>
 
                 <button
-                  onClick={() => nav("/user/checkout")}
-                  className="w-full bg-secondary text-white font-medium py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center"
+                  onClick={() => nav("/checkout")}
+                  className="w-full bg-secondary text-white font-medium py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center cursor-pointer active:scale-90"
                 >
-                  <span>Proceed To Checkout</span>
-                  <i className="fa-solid fa-arrow-right ml-2"></i>
+                  Proceed To Checkout
+
                 </button>
               </div>
             </div>
